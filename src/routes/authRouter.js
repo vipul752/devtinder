@@ -50,7 +50,6 @@ router.post("/login", async (req, res) => {
       return res.status(400).send("User not found");
     }
 
-    // Correct usage of bcrypt.compare
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
       return res.status(400).send("Invalid credentials");
@@ -58,12 +57,12 @@ router.post("/login", async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
 
-    // Set the JWT token in cookies
     res.cookie("token", token, {
-      httpOnly: true, // Prevent client-side JS access
-      secure: process.env.NODE_ENV === "production", // HTTPS only in production
-      sameSite: "strict", // Protect against CSRF
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
     });
+
     res.send(user);
   } catch (error) {
     console.error(error);
