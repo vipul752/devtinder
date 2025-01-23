@@ -59,7 +59,6 @@ const server = http.createServer(app);
 // Initialize Socket.IO with the server
 initialiseSocket(server);
 
-//on "/" route send "Server is running"
 
 app.get("/", (req, res) => {
   res.send("Server is running");
