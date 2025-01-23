@@ -1,0 +1,33 @@
+{
+  "name": "devtinder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon src/app.js",
+    "web": "node src/app.js",
+    "deploy": "wrangler deploy --minify"
+  },
+  "author": "Vipul Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.1.6",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.2",
+    "nodemon": "^3.1.7",
+    "razorpay": "^2.9.5",
+    "socket.io": "^4.8.1",
+    "validator": "^13.12.0",
+    "wrangler": "^3.99.0"
+  }
+}
