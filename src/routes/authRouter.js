@@ -4,6 +4,7 @@ const User = require("../models/userSchema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
+
 const JWT_SECRET = "vipul";
 
 router.post("/signup", async (req, res) => {
@@ -55,6 +56,7 @@ router.post("/login", async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
+  
 
     // Set the JWT token in cookies
     res.cookie("token", token, {
