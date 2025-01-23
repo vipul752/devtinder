@@ -8,7 +8,7 @@ const http = require("http");
 // CORS configuration
 app.use(
   cors({
-    origin: "https://dev-tinder-web-mu.vercel.app", // Replace with your frontend URL
+    origin: true, // Replace with your frontend URL
     credentials: true, // Allow cookies to be sent in cross-origin requests
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
   })

@@ -4,7 +4,6 @@ const User = require("../models/userSchema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-
 const JWT_SECRET = "vipul";
 
 router.post("/signup", async (req, res) => {
@@ -37,37 +36,30 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { emailId, password } = req.body;
-
-  if (!emailId || !password) {
-    return res.status(400).send("Please provide email and password");
-  }
-
   try {
-    const user = await User.findOne({ emailId });
+    const { emailId, password } = req.body;
+
+    const user = await User.findOne({ emailId: emailId });
     if (!user) {
-      return res.status(400).send("User not found");
+      throw new Error("Invalid credentials");
     }
+    const isPasswordValid = await user.validatePassword(password);
 
-    // Correct usage of bcrypt.compare
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
-    if (!isPasswordMatch) {
-      return res.status(400).send("Invalid credentials");
+    if (isPasswordValid) {
+      const token = await user.getJWT();
+
+      res.cookie("token", token, {
+        expires: new Date(Date.now() + 8 * 3600000),
+      });
+      res.send(user);
+    } else {
+      throw new Error("Invalid credentials");
     }
-
-    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
-  
-
-    // Set the JWT token in cookies
-    res.cookie("token", token, {
-      secure: false,
-    });
-    res.send(user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Server error");
+  } catch (err) {
+    res.status(400).send("ERROR : " + err.message);
   }
 });
+
 
 router.patch("/resetPassword", async (req, res) => {
   try {
