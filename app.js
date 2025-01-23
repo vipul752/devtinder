@@ -7,29 +7,11 @@ const http = require("http");
 
 app.use(
   cors({
-    origin: "https://dev-tinder-web-mu.vercel.app", 
+    origin: "https://dev-tinder-web-mu.vercel.app",
     credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
   })
 );
-
-app.use((req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://dev-tinder-web-mu.vercel.app"
-  );
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, DELETE, OPTIONS"
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.header("Cache-Control", "no-store"); // Prevent caching
-  next();
-});
 
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
