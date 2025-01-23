@@ -38,6 +38,7 @@ const profileRouter = require("./src/routes/profileRouter");
 const connectionRouter = require("./src/routes/connection");
 const userRouter = require("./src/routes/userRouter");
 const { paymentRouter } = require("./src/routes/payment");
+const chatRouter = require("./src/routes/chatRouter");
 
 // Socket.IO initialization
 const { initialiseSocket } = require("./src/utils/socket");
@@ -47,6 +48,7 @@ app.use("/", profileRouter);
 app.use("/", connectionRouter);
 app.use("/", userRouter);
 app.use("/", paymentRouter);
+app.use("/", chatRouter);
 
 // HTTP Server instance
 const server = http.createServer(app);
