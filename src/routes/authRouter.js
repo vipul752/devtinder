@@ -29,9 +29,11 @@ router.post("/signup", async (req, res) => {
   const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
 
   res.cookie("token", token, {
-    expires: new Date(Date.now() + 8 * 3600000),
+    httpOnly: true, // Prevent client-side JS access
+    secure: true, // Use true for HTTPS (on Vercel and Render)
+    sameSite: "none", // Required for cross-origin cookies
+    expires: new Date(Date.now() + 8 * 3600000), // Set expiration time (8 hours)
   });
-
   res.json({ messae: "User saved successfully", data: savedUser });
 });
 
@@ -58,7 +60,9 @@ router.post("/login", async (req, res) => {
 
     // Set the JWT token in cookies
     res.cookie("token", token, {
-      secure: false,
+      httpOnly: true, // Prevent client-side JS access
+      secure: process.env.NODE_ENV === "production", // HTTPS only in production
+      sameSite: "strict", // Protect against CSRF
     });
     res.send(user);
   } catch (error) {
