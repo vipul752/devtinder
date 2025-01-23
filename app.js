@@ -5,32 +5,16 @@ const cors = require("cors");
 const { connectDB } = require("./src/config/database");
 const http = require("http");
 
+// CORS configuration
 app.use(
   cors({
-    origin: "https://dev-tinder-web-mu.vercel.app",
-    credentials: true,
+    origin: "https://dev-tinder-web-mu.vercel.app", // Replace with your frontend URL
+    credentials: true, // Allow cookies to be sent in cross-origin requests
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
   })
 );
 
-app.use((req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://dev-tinder-web-mu.vercel.app"
-  );
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, DELETE, OPTIONS"
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.header("Cache-Control", "no-store"); // Prevent caching
-  next();
-});
-
+// Body parsers
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
@@ -46,6 +30,7 @@ const chatRouter = require("./src/routes/chatRouter");
 // Socket.IO initialization
 const { initialiseSocket } = require("./src/utils/socket");
 
+// Routes setup
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", connectionRouter);
@@ -59,11 +44,12 @@ const server = http.createServer(app);
 // Initialize Socket.IO with the server
 initialiseSocket(server);
 
-
+// Simple test route
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
+// Start the server on port 3000
 server.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
