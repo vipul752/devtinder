@@ -86,7 +86,7 @@ router.get("/user/connection/accepted", authenticateUser, async (req, res) => {
   }
 });
 
-router.get("/feed", authenticateUser, async (req, res) => {
+router.get("/feed", async (req, res) => {
   try {
     const loggedInUser = req.user;
     const page = parseInt(req.query.page);
