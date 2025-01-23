@@ -12,7 +12,7 @@ const getHashedRoomId = (userId, targetUserId) => {
 module.exports.initialiseSocket = (server) => {
   const io = new Server(server, {
     cors: {
-      origin: "http://localhost:5173",
+      origin: "https://dev-tinder-web-mu.vercel.app/",
       methods: ["GET", "POST"],
       credentials: true,
     },
