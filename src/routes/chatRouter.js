@@ -14,7 +14,7 @@ chatRouter.get("/chat/:targetUserId", authenticateUser, async (req, res) => {
     }).populate(
       {
         path:"messages.senderId",
-        select: " firstName  lastName",
+        select: " firstName lastName",
       }
     );
 
@@ -28,7 +28,7 @@ chatRouter.get("/chat/:targetUserId", authenticateUser, async (req, res) => {
     await chat.save();
     res.json(chat);
   } catch (error) {
-    console.error("Error while fetching chat:", error);
+    console.error("Error while fetching chat:  ", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
