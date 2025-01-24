@@ -7,7 +7,7 @@ const http = require("http");
 
 app.use(
   cors({
-    origin: "https://dev-tinder-web-mu.vercel.app",
+    origin: "http://localhost:5173",
     credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
   })
@@ -48,6 +48,5 @@ app.get("/", (req, res) => {
 server.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
-
 // Connect to the database
 connectDB();
