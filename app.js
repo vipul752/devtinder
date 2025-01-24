@@ -7,7 +7,7 @@ const http = require("http");
 
 app.use(
   cors({
-    origin: true,
+    origin: "http://vipul226.me/devTinder-web",
     credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
   })
