@@ -7,13 +7,13 @@
     "start": "node app.js",
     "dev": "nodemon src/app.js",
     "web": "node src/app.js",
-    "deploy": "wrangler deploy --minify"
+    "build":"npm run build"
   },
   "author": "Vipul Kumar",
   "license": "ISC",
   "dependencies": {
     "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
+    "@emotion/styled": "^11.13.0", 
     "@mui/material": "^6.1.6",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
