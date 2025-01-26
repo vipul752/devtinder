@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon src/app.js",
-    "web": "node src/app.js",
-    "build":"npm run build"
+    "web": "node src/app.js"
   },
   "author": "Vipul Kumar",
   "license": "ISC",
