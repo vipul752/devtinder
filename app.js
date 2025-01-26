@@ -7,7 +7,7 @@ const http = require("http");
 
 app.use(
   cors({
-    origin: "http://vipul226.me/devTinder-web",
+    origin: "https://dev-tinder-web-mu.vercel.app",
     credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
   })
